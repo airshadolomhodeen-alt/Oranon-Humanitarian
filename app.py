@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 
 # Page Configuration
@@ -10,17 +11,23 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Styling for professional executive look
+# Custom Styling for professional executive look & card containers
 st.markdown(
     """
     <style>
     .main { background-color: #f8f9fa; }
     .stMetric { background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .stAlert { border-radius: 8px; }
     .banner-container {
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         margin-bottom: 20px;
     }
     </style>
@@ -57,7 +64,7 @@ def load_data():
   total_budget = 1_500_000_000_000.0  # 1.5 Trillion PhP
   df["ESTIMATE AMOUNT"] = (np.array(raw_weights) / total_raw) * total_budget
 
-  # Assign realistic planning/implementation stages (No Completed projects)
+  # Assign realistic planning/implementation stages
   statuses = [
       "Master Planning",
       "Pre-Implementation",
@@ -146,7 +153,6 @@ avg_cost = (
     total_filtered_cost / total_paps if total_paps > 0 else 0
 )
 
-# Smart formatting for Trillions vs Billions
 if total_filtered_cost >= 1_000_000_000_000:
   cost_display = f"₱{total_filtered_cost / 1e12:,.2f} Trillion"
 else:
@@ -247,18 +253,32 @@ scurve_df = pd.DataFrame({
     "Cumulative Disbursement (₱B)": np.round(cumulative_budget_b, 2),
 })
 
-c_col1, c_col2 = st.columns([1.2, 1])
+c_col1, c_col2 = st.columns(2)
+
 with c_col1:
-  st.markdown("##### Annual vs. Cumulative Cash Flow")
-  st.bar_chart(
-      scurve_df.set_index("Year")[["Annual Disbursement (₱B)"]]
+  fig_bar = px.bar(
+      scurve_df,
+      x="Year",
+      y="Annual Disbursement (₱B)",
+      title="Annual Disbursement Cash Flow (₱B)",
+      template="plotly_white",
   )
+  fig_bar.update_layout(title_font_size=14, margin=dict(t=40, b=20, l=20, r=20))
+  st.plotly_chart(fig_bar, use_container_width=True)
 
 with c_col2:
-  st.markdown("##### Cumulative Financial Progress S-Curve (%)")
-  st.line_chart(
-      scurve_df.set_index("Year")[["Cumulative Progress (%)"]]
+  fig_line = px.line(
+      scurve_df,
+      x="Year",
+      y="Cumulative Progress (%)",
+      title="Cumulative Financial Progress S-Curve (%)",
+      markers=True,
+      template="plotly_white",
   )
+  fig_line.update_layout(
+      title_font_size=14, margin=dict(t=40, b=20, l=20, r=20)
+  )
+  st.plotly_chart(fig_line, use_container_width=True)
 
 with st.expander("🔍 View Detailed Schedule & Disbursement Table (2026-2040)"):
   st.dataframe(scurve_df, use_container_width=True, hide_index=True)
@@ -269,21 +289,52 @@ st.markdown("---")
 # 4. ANALYTICS & SECTOR BREAKDOWN CHARTS
 # ==========================================
 col_chart1, col_chart2 = st.columns(2)
+
 with col_chart1:
-  st.subheader("💰 Investment Breakdown by Sector")
   if not filtered_df.empty:
     sector_grouped = (
-        filtered_df.groupby("SECTOR")["ESTIMATE AMOUNT"].sum() / 1e9
+        filtered_df.groupby("SECTOR")["ESTIMATE AMOUNT"]
+        .sum()
+        .reset_index()
     )
-    st.bar_chart(sector_grouped)
+    sector_grouped["ESTIMATE (₱B)"] = sector_grouped["ESTIMATE AMOUNT"] / 1e9
+    fig_sector = px.bar(
+        sector_grouped,
+        x="SECTOR",
+        y="ESTIMATE (₱B)",
+        title="Investment Breakdown by Sector (₱B)",
+        template="plotly_white",
+        color="SECTOR",
+    )
+    fig_sector.update_layout(
+        title_font_size=14,
+        margin=dict(t=40, b=20, l=20, r=20),
+        showlegend=False,
+    )
+    st.plotly_chart(fig_sector, use_container_width=True)
   else:
     st.warning("No data available for current filters.")
 
 with col_chart2:
-  st.subheader("📊 PAP Distribution by Project Stage")
   if not filtered_df.empty:
-    status_grouped = filtered_df["STATUS"].value_counts()
-    st.bar_chart(status_grouped)
+    status_grouped = (
+        filtered_df["STATUS"].value_counts().reset_index()
+    )
+    status_grouped.columns = ["Project Stage", "Count"]
+    fig_status = px.bar(
+        status_grouped,
+        x="Project Stage",
+        y="Count",
+        title="PAP Distribution by Project Stage",
+        template="plotly_white",
+        color="Project Stage",
+    )
+    fig_status.update_layout(
+        title_font_size=14,
+        margin=dict(t=40, b=20, l=20, r=20),
+        showlegend=False,
+    )
+    st.plotly_chart(fig_status, use_container_width=True)
   else:
     st.warning("No data available for current filters.")
 
