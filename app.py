@@ -11,34 +11,57 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Styling for professional executive look & card containers
+# Custom Responsive Styling for Mobile & Desktop Executive Look
 st.markdown(
     """
     <style>
     .main { background-color: #f8f9fa; }
-    .stMetric { background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    
+    /* Responsive Metrics */
+    .stMetric { 
+        background-color: #ffffff; 
+        padding: 12px 15px; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+        margin-bottom: 10px;
+    }
+    
+    /* Professional Banner */
     .banner-container {
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         margin-bottom: 20px;
+        width: 100%;
     }
+    
+    /* Profile Card */
     .profile-card {
         background-color: #ffffff;
-        padding: 15px 20px;
+        padding: 15px;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         margin-bottom: 20px;
         border-left: 5px solid #1f77b4;
     }
+    
+    /* Disclaimer Box */
     .disclaimer-box {
         background-color: #fff3cd;
         color: #856404;
-        padding: 12px 18px;
+        padding: 12px 15px;
         border-radius: 8px;
         border: 1px solid #ffeeba;
-        font-size: 14px;
-        margin-bottom: 25px;
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    /* Mobile Responsiveness Improvements */
+    @media screen and (max-width: 768px) {
+        .stMetric { font-size: 14px !important; }
+        h1 { font-size: 22px !important; }
+        h2 { font-size: 18px !important; }
+        h3 { font-size: 16px !important; }
     }
     </style>
 """,
@@ -105,35 +128,40 @@ except Exception as e:
 # ==========================================
 # 1. HEADER, PROFILE & DISCLAIMER
 # ==========================================
-st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
-st.markdown(
-    "**Total Project Investment Portfolio:** `₱1.50 Trillion` distributed across"
-    " **95 Strategic PAPs** (Projects, Programs, and Activities)."
-)
+head_col1, head_col2 = st.columns([3, 1])
 
-# Professional Profile Card with Photo
-st.markdown('<div class="profile-card">', unsafe_allow_html=True)
-p_col1, p_col2 = st.columns([1, 6])
-with p_col1:
-  try:
-    st.image("2x21_optimized_300.png", width=90)
-  except Exception:
-    st.info("Photo missing")
-with p_col2:
+with head_col1:
+  st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
   st.markdown(
-      """
-        <h4 style="margin: 0; color: #333333; padding-top: 5px;">Lead Master Planner & Principal Consultant</h4>
-        <p style="margin: 5px 0 0 0; font-size: 16px; font-weight: bold; color: #1f77b4;">ENGR. AIRSAD R. OLOMODIN, MBA, PhD</p>
-    """,
-      unsafe_allow_html=True,
+      "**Total Project Investment Portfolio:** `₱1.50 Trillion` distributed across"
+      " **95 Strategic PAPs** (Projects, Programs, and Activities)."
   )
-st.markdown("</div>", unsafe_allow_html=True)
+
+with head_col2:
+  # Professional Profile Card with Photo
+  st.markdown('<div class="profile-card">', unsafe_allow_html=True)
+  p_subcol1, p_subcol2 = st.columns([1, 2])
+  with p_subcol1:
+    try:
+      st.image("2x21_optimized_300.png", width=65)
+    except Exception:
+      pass
+  with p_subcol2:
+    st.markdown(
+        """
+        <p style="margin: 0; font-size: 10px; color: #666; font-weight: bold; text-transform: uppercase;">Lead Master Planner</p>
+        <p style="margin: 2px 0 0 0; font-size: 12px; font-weight: bold; color: #1f77b4; line-height: 1.2;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 0; font-size: 10px; color: #444;">MBA, PhD</p>
+        """,
+        unsafe_allow_html=True,
+    )
+  st.markdown("</div>", unsafe_allow_html=True)
 
 # Official Conceptual Plan Disclaimer
 st.markdown(
     """
     <div class="disclaimer-box">
-        <strong>⚠️ DISCLAIMER:</strong> This dashboard and its associated master plan layouts represent a <strong>Conceptual Plan</strong> only. All spatial allocations, technical designs, and financial projections are subject to final Detailed Engineering Design (DED) and Comprehensive Feasibility Study (FS) prior to project execution and implementation.
+        <strong>⚠️ DISCLAIMER:</strong> This dashboard represents a <strong>Conceptual Plan</strong> only. All spatial allocations, technical designs, and financial projections are subject to final Detailed Engineering Design (DED) and Comprehensive Feasibility Study (FS).
     </div>
 """,
     unsafe_allow_html=True,
@@ -196,16 +224,16 @@ if total_filtered_cost >= 1_000_000_000_000:
 else:
   cost_display = f"₱{total_filtered_cost / 1e9:,.2f} Billion"
 
-col1, col2, col3, col4 = st.columns(4)
-with col1:
+m1, m2, m3, m4 = st.columns(4)
+with m1:
   st.metric(label="Filtered Investment Cost", value=cost_display)
-with col2:
+with m2:
   st.metric(label="Total PAPs Covered", value=f"{total_paps} / 95")
-with col3:
+with m3:
   st.metric(
       label="Average PAP Cost", value=f"₱{avg_cost / 1e6:,.2f} M"
   )
-with col4:
+with m4:
   st.metric(
       label="Portfolio Share",
       value=f"{(total_filtered_cost / 1_500_000_000_000) * 100:.1f}%",
@@ -219,7 +247,7 @@ st.markdown("---")
 st.subheader("🗺️ Conceptual Plan: Development Areas (1 to 4)")
 st.markdown(
     "Click and expand each area below to review the spatial conceptual layouts in"
-    " a 2×2 grid structure."
+    " a responsive 2×2 grid structure."
 )
 
 row1_col1, row1_col2 = st.columns(2)
