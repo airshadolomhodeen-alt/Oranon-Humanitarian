@@ -17,7 +17,6 @@ st.markdown(
     .main { background-color: #f8f9fa; }
     .stMetric { background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     .stAlert { border-radius: 8px; }
-    /* Professional styling for banner container */
     .banner-container {
         border-radius: 10px;
         overflow: hidden;
@@ -58,9 +57,9 @@ def load_data():
   total_budget = 1_500_000_000_000.0  # 1.5 Trillion PhP
   df["ESTIMATE AMOUNT"] = (np.array(raw_weights) / total_raw) * total_budget
 
-  # Assign Status mock data
+  # Assign Status mock data ensuring all statuses (including Completed) are populated
   statuses = ["Completed", "Ongoing", "Pre-Implementation", "Pipeline"]
-  status_weights = [0.15, 0.35, 0.30, 0.20]
+  status_weights = [0.20, 0.35, 0.30, 0.15]
   df["STATUS"] = np.random.choice(
       statuses, size=len(df), p=status_weights
   )
@@ -236,8 +235,9 @@ s_curve_pct = s_curve_pct / s_curve_pct[-1] * 100
 cumulative_budget_b = s_curve_pct * (total_filtered_cost / 1e9 / 100)
 annual_budget_b = np.diff(np.insert(cumulative_budget_b, 0, 0))
 
+# Convert Year to string category so Streamlit charts plot exact discrete year labels on the X-axis
 scurve_df = pd.DataFrame({
-    "Year": years,
+    "Year": [str(y) for y in years],
     "Annual Disbursement (₱B)": np.round(annual_budget_b, 2),
     "Cumulative Progress (%)": np.round(s_curve_pct, 1),
     "Cumulative Disbursement (₱B)": np.round(cumulative_budget_b, 2),
