@@ -13,57 +13,57 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Responsive Styling for Mobile & Desktop Executive Look
+# Custom Responsive Styling for Executive Command Center Look
 st.markdown(
     """
     <style>
-    .main { background-color: #f8f9fa; }
+    .main { background-color: #f4f6f9; }
     
     /* Responsive Metrics */
     .stMetric { 
         background-color: #ffffff; 
         padding: 12px 15px; 
         border-radius: 8px; 
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.04); 
+        border-top: 4px solid #1f77b4;
         margin-bottom: 10px;
     }
     
-    /* Professional Banner */
+    /* Professional Hero Banner */
     .banner-container {
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        margin-bottom: 15px;
         width: 100%;
     }
     
     /* Profile Card */
     .profile-card {
         background-color: #ffffff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        margin-bottom: 20px;
-        border-left: 5px solid #1f77b4;
+        padding: 10px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        border-left: 4px solid #1f77b4;
     }
     
     /* Disclaimer Box */
     .disclaimer-box {
         background-color: #fff3cd;
         color: #856404;
-        padding: 12px 15px;
-        border-radius: 8px;
+        padding: 10px 14px;
+        border-radius: 6px;
         border: 1px solid #ffeeba;
-        font-size: 13px;
+        font-size: 12px;
         margin-bottom: 20px;
     }
 
     /* Mobile Responsiveness Improvements */
     @media screen and (max-width: 768px) {
         .stMetric { font-size: 14px !important; }
-        h1 { font-size: 22px !important; }
-        h2 { font-size: 18px !important; }
-        h3 { font-size: 16px !important; }
+        h1 { font-size: 20px !important; }
+        h2 { font-size: 16px !important; }
+        h3 { font-size: 14px !important; }
     }
     </style>
 """,
@@ -128,45 +128,58 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. HEADER, PROFILE & DISCLAIMER
+# 1. HERO BANNER, HEADER & PROFILE
 # ==========================================
 pht_now = datetime.datetime.now(ZoneInfo("Asia/Manila"))
 pht_time_str = pht_now.strftime("%a, %b %d, %Y • %I:%M %p")
 
-head_col1, head_col2 = st.columns([2.5, 1.5])
+# Professional Banner at the very top as the visual command center hero
+st.markdown('<div class="banner-container">', unsafe_allow_html=True)
+try:
+  st.image("Banner.jfif", use_container_width=True)
+except Exception:
+  st.warning(
+      "Banner image ('Banner.jfif') not found in directory. Please upload it"
+      " to GitHub."
+  )
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Title & Profile Header Deck
+head_col1, head_col2 = st.columns([2.3, 1.7])
 
 with head_col1:
-  st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
+  st.title("OHSF Master Plan Dashboard")
   st.markdown(
-      "**Total Project Investment Portfolio:** `₱1.50 Trillion` distributed across"
-      " **95 Strategic PAPs** (Projects, Programs, and Activities)."
+      "**Oranon Humanitarian Special Framework (OHSF)**<br>Total Investment"
+      " Portfolio: `₱1.50 Trillion` across **95 Strategic PAPs**.",
+      unsafe_allow_html=True,
   )
 
 with head_col2:
-  # Streamlined Live Philippine Timestamp
+  # Streamlined Live Philippine Timestamp Badge
   st.markdown(
       f"""
-    <div style="background-color: #eef2f7; padding: 6px 12px; border-radius: 6px; text-align: right; margin-bottom: 8px; font-size: 11px; font-weight: bold; color: #333;">
+    <div style="background-color: #ffffff; padding: 5px 10px; border-radius: 6px; text-align: right; margin-bottom: 6px; font-size: 11px; font-weight: bold; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
         🕒 {pht_time_str} (PHT)
     </div>
     """,
       unsafe_allow_html=True,
   )
 
-  # Professional Profile Card with Balanced Photo & Title
+  # Professional Profile Card
   st.markdown('<div class="profile-card">', unsafe_allow_html=True)
-  p_subcol1, p_subcol2 = st.columns([1, 1.8])
+  p_subcol1, p_subcol2 = st.columns([1, 2.2])
   with p_subcol1:
     try:
-      st.image("2x21_optimized_300.png", width=110)
+      st.image("2x21_optimized_300.png", width=90)
     except Exception:
       st.info("Photo missing")
   with p_subcol2:
     st.markdown(
         """
-        <p style="margin: 0; font-size: 11px; color: #555; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
-        <p style="margin: 4px 0 2px 0; font-size: 13px; font-weight: bold; color: #1f77b4; line-height: 1.2;">ENGR. AIRSAD R. OLOMODIN</p>
-        <p style="margin: 0; font-size: 11px; color: #444; font-weight: 600;">MBA, PhD</p>
+        <p style="margin: 0; font-size: 10px; color: #555; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #1f77b4; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 0; font-size: 10px; color: #444; font-weight: 600;">MBA, PhD</p>
         """,
         unsafe_allow_html=True,
     )
@@ -181,17 +194,6 @@ st.markdown(
 """,
     unsafe_allow_html=True,
 )
-
-# Professional Banner Wrapped in Container
-st.markdown('<div class="banner-container">', unsafe_allow_html=True)
-try:
-  st.image("Banner.jfif", use_container_width=True)
-except Exception:
-  st.warning(
-      "Banner image ('Banner.jfif') not found in directory. Please upload it"
-      " to GitHub."
-  )
-st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("---")
 
