@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Professional Layout Styling (Zero Top Gap & Edge-to-Edge Banner)
+# Professional Layout Styling (Edge-to-Edge Banner + Padded Content)
 st.markdown(
     """
     <style>
@@ -27,28 +27,42 @@ st.markdown(
             display: none !important;
         }
         
-        /* Streamline top padding and background */
+        /* Prevent horizontal scrollbar from full-width elements */
+        .stApp {
+            overflow-x: hidden;
+        }
+        
+        /* Restore clean padding for the main dashboard content */
         .block-container {
-            padding-top: 0rem !important;
-            padding-bottom: 2rem !important;
-            max-width: 100% !important;
+            padding-top: 1rem !important;
+            padding-bottom: 3rem !important;
+            padding-left: 3rem !important;
+            padding-right: 3rem !important;
+            max-width: 1400px !important;
         }
         
         .main { background-color: #f4f6f9; }
         
-        /* Direct styling for the banner image to sit flush at the top */
-        div[data-testid="stImage"] {
-            margin-top: 0px !important;
-            margin-bottom: 15px !important;
+        /* True Edge-to-Edge Full-Width Banner Breakout */
+        .edge-banner {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-top: -1rem;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background-color: #0e1117;
         }
         
-        div[data-testid="stImage"] img {
-            width: 100% !important;
-            height: 270px !important;
+        .edge-banner img {
+            width: 100vw !important;
+            height: 280px !important;
             object-fit: cover !important;
             object-position: center !important;
-            border-radius: 0px 0px 8px 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            display: block;
         }
         
         /* Clean Professional Metrics */
@@ -74,7 +88,8 @@ st.markdown(
 
         /* Mobile Optimization */
         @media screen and (max-width: 768px) {
-            div[data-testid="stImage"] img { height: 160px !important; }
+            .edge-banner img { height: 160px !important; }
+            .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
         }
     </style>
 """,
@@ -139,16 +154,16 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. CLEAN FLUSH BANNER
+# 1. TRUE EDGE-TO-EDGE FULL-WIDTH BANNER
 # ==========================================
+st.markdown('<div class="edge-banner">', unsafe_allow_html=True)
 try:
   st.image("Banner.jfif", use_container_width=True)
 except Exception:
-  st.error(
-      "⚠️ Banner image ('Banner.jfif') could not be found in your repository root"
-      " directory. Please verify the filename and extension (e.g., .jpg vs"
-      " .jfif)."
+  st.warning(
+      "⚠️ Banner image ('Banner.jfif') not found in repository root directory."
   )
+st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 2. EXECUTIVE HEADER, PROFILE & TIME
@@ -272,7 +287,7 @@ with m4:
 st.markdown("---")
 
 # ==========================================
-# 2. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID)
+# 3. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID)
 # ==========================================
 st.subheader("🗺️ Conceptual Plan: Development Areas (1 to 4)")
 st.markdown(
@@ -325,7 +340,7 @@ with row2_col2:
 st.markdown("---")
 
 # ==========================================
-# 3. CONSTRUCTION SCHEDULE & S-CURVE (2026-2040)
+# 4. CONSTRUCTION SCHEDULE & S-CURVE (2026-2040)
 # ==========================================
 st.subheader("📈 Construction Schedule & S-Curve (2026–2040)")
 st.markdown(
@@ -382,7 +397,7 @@ with st.expander("🔍 View Detailed Schedule & Disbursement Table (2026-2040)")
 st.markdown("---")
 
 # ==========================================
-# 4. ANALYTICS & SECTOR BREAKDOWN CHARTS
+# 5. ANALYTICS & SECTOR BREAKDOWN CHARTS
 # ==========================================
 col_chart1, col_chart2 = st.columns(2)
 
@@ -437,7 +452,7 @@ with col_chart2:
 st.markdown("---")
 
 # ==========================================
-# 5. DETAILED MASTER PLAN DATA TABLE
+# 6. DETAILED MASTER PLAN DATA TABLE
 # ==========================================
 st.subheader("📋 OHSF Master Plan PAP Inventory")
 st.markdown(
