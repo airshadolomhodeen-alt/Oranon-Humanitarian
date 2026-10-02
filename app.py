@@ -130,9 +130,8 @@ except Exception as e:
 # ==========================================
 # 1. HEADER, PROFILE & DISCLAIMER
 # ==========================================
-pht_timezone = pytz.timezone("Asia/Manila")
-pht_now = datetime.datetime.now(pht_timezone)
-pht_time_str = pht_now.strftime("%A, %b %d, %Y | %I:%M %p")
+pht_now = datetime.datetime.now(ZoneInfo("Asia/Manila"))
+pht_time_str = pht_now.strftime("%a, %b %d, %Y • %I:%M %p")
 
 head_col1, head_col2 = st.columns([2.5, 1.5])
 
@@ -144,11 +143,11 @@ with head_col1:
   )
 
 with head_col2:
-  # Live Philippine Time Badge
+  # Streamlined Live Philippine Timestamp
   st.markdown(
       f"""
     <div style="background-color: #eef2f7; padding: 6px 12px; border-radius: 6px; text-align: right; margin-bottom: 8px; font-size: 11px; font-weight: bold; color: #333;">
-        🇵🇭 PHT: {pht_time_str}
+        🕒 {pht_time_str} (PHT)
     </div>
     """,
       unsafe_allow_html=True,
@@ -172,29 +171,6 @@ with head_col2:
         unsafe_allow_html=True,
     )
   st.markdown("</div>", unsafe_allow_html=True)
-
-# Official Conceptual Plan Disclaimer
-st.markdown(
-    """
-    <div class="disclaimer-box">
-        <strong>⚠️ DISCLAIMER:</strong> This dashboard represents a <strong>Conceptual Plan</strong> only. All spatial allocations, technical designs, and financial projections are subject to final Detailed Engineering Design (DED) and Comprehensive Feasibility Study (FS).
-    </div>
-""",
-    unsafe_allow_html=True,
-)
-
-# Professional Banner Wrapped in Container
-st.markdown('<div class="banner-container">', unsafe_allow_html=True)
-try:
-  st.image("Banner.jfif", use_container_width=True)
-except Exception:
-  st.warning(
-      "Banner image ('Banner.jfif') not found in directory. Please upload it"
-      " to GitHub."
-  )
-st.markdown("</div>", unsafe_allow_html=True)
-
-st.markdown("---")
 
 # ==========================================
 # SIDEBAR FILTERS
