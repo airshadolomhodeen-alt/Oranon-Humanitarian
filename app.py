@@ -13,66 +13,76 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Styling to Eliminate Top Gap & Fix Banner Layout
+# Professional Layout Styling (Absolute Zero Top Gap Fix)
 st.markdown(
     """
     <style>
-    /* Remove Streamlit's default top header whitespace */
-    header[data-testid="stHeader"] {
-        background: transparent;
-    }
-    
-    .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 2rem !important;
-        max-width: 100% !important;
-    }
-    
-    .main { background-color: #f4f6f9; }
-    
-    /* Sleek Banner Container */
-    .banner-container {
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
-        border-radius: 0px 0px 8px 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    
-    .banner-container img {
-        width: 100% !important;
-        height: 250px !important;
-        object-fit: cover !important;
-        object-position: center !important;
-    }
-    
-    /* Responsive Metrics */
-    .stMetric { 
-        background-color: #ffffff; 
-        padding: 12px 15px; 
-        border-radius: 8px; 
-        box-shadow: 0 2px 4px rgba(0,0,0,0.04); 
-        border-top: 4px solid #1f77b4;
-        margin-bottom: 10px;
-    }
-    
-    /* Disclaimer Box */
-    .disclaimer-box {
-        background-color: #fff3cd;
-        color: #856404;
-        padding: 10px 14px;
-        border-radius: 6px;
-        border: 1px solid #ffeeba;
-        font-size: 12px;
-        margin-bottom: 20px;
-    }
+        /* Completely wipe out Streamlit's default top header, menu, and decoration space */
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        div[data-testid="stDecoration"] {display: none !important;}
+        header[data-testid="stHeader"] {
+            display: none !important; 
+            height: 0px !important; 
+            visibility: hidden !important;
+        }
+        
+        /* Pull the main app container all the way to the top edge */
+        .stApp {
+            margin-top: -80px !important;
+        }
+        
+        .block-container {
+            padding-top: 0rem !important;
+            padding-bottom: 2rem !important;
+            max-width: 100% !important;
+        }
+        
+        .main { background-color: #f4f6f9; }
+        
+        /* Sleek Edge-to-Edge Banner Container */
+        .banner-container {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            border-radius: 0px 0px 10px 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+        
+        .banner-container img {
+            width: 100% !important;
+            height: 260px !important;
+            object-fit: cover !important;
+            object-position: center !important;
+        }
+        
+        /* Clean Professional Metrics */
+        .stMetric { 
+            background-color: #ffffff; 
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04); 
+            border-top: 4px solid #1f77b4;
+            margin-bottom: 10px;
+        }
+        
+        /* Disclaimer Box */
+        .disclaimer-box {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #ffeeba;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
 
-    /* Mobile Responsiveness Improvements */
-    @media screen and (max-width: 768px) {
-        .banner-container, .banner-container img { height: 150px !important; }
-        .stMetric { font-size: 14px !important; }
-    }
+        /* Mobile Optimization */
+        @media screen and (max-width: 768px) {
+            .banner-container, .banner-container img { height: 160px !important; }
+            .stApp { margin-top: -50px !important; }
+        }
     </style>
 """,
     unsafe_allow_html=True,
