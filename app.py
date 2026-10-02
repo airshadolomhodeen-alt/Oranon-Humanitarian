@@ -31,7 +31,7 @@ st.markdown(
     
     /* Professional Hero Banner */
     .banner-container {
-        border-radius: 10px;
+        border-radius: 5px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         margin-top: 5px;
