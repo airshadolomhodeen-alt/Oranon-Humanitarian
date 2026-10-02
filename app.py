@@ -1,6 +1,8 @@
+import datetime
 import numpy as np
 import pandas as pd
 import plotly.express as px
+import pytz
 import streamlit as st
 
 # Page Configuration
@@ -128,7 +130,11 @@ except Exception as e:
 # ==========================================
 # 1. HEADER, PROFILE & DISCLAIMER
 # ==========================================
-head_col1, head_col2 = st.columns([3, 1])
+pht_timezone = pytz.timezone("Asia/Manila")
+pht_now = datetime.datetime.now(pht_timezone)
+pht_time_str = pht_now.strftime("%A, %b %d, %Y | %I:%M %p")
+
+head_col1, head_col2 = st.columns([2.5, 1.5])
 
 with head_col1:
   st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
@@ -138,20 +144,30 @@ with head_col1:
   )
 
 with head_col2:
-  # Professional Profile Card with Photo
+  # Live Philippine Time Badge
+  st.markdown(
+      f"""
+    <div style="background-color: #eef2f7; padding: 6px 12px; border-radius: 6px; text-align: right; margin-bottom: 8px; font-size: 11px; font-weight: bold; color: #333;">
+        🇵🇭 PHT: {pht_time_str}
+    </div>
+    """,
+      unsafe_allow_html=True,
+  )
+
+  # Professional Profile Card with Balanced Photo & Title
   st.markdown('<div class="profile-card">', unsafe_allow_html=True)
-  p_subcol1, p_subcol2 = st.columns([1, 2])
+  p_subcol1, p_subcol2 = st.columns([1, 1.8])
   with p_subcol1:
     try:
-      st.image("2x21_optimized_300.png", width=65)
+      st.image("2x21_optimized_300.png", width=110)
     except Exception:
-      pass
+      st.info("Photo missing")
   with p_subcol2:
     st.markdown(
         """
-        <p style="margin: 0; font-size: 10px; color: #666; font-weight: bold; text-transform: uppercase;">Lead Master Planner</p>
-        <p style="margin: 2px 0 0 0; font-size: 12px; font-weight: bold; color: #1f77b4; line-height: 1.2;">ENGR. AIRSAD R. OLOMODIN</p>
-        <p style="margin: 0; font-size: 10px; color: #444;">MBA, PhD</p>
+        <p style="margin: 0; font-size: 11px; color: #555; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 4px 0 2px 0; font-size: 13px; font-weight: bold; color: #1f77b4; line-height: 1.2;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 0; font-size: 11px; color: #444; font-weight: 600;">MBA, PhD</p>
         """,
         unsafe_allow_html=True,
     )
