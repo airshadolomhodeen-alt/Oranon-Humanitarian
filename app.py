@@ -185,8 +185,6 @@ with col_a3:
   with st.expander("📍 Area 3 Conceptual Plan"):
     try:
       st.image("area 3.jfif", use_container_width=True)
-    end except Exception:
-      pass
     except Exception:
       st.info("area 3.jfif missing")
     st.caption(
@@ -217,12 +215,10 @@ st.markdown(
 # Generate S-curve simulation data for 2026-2040
 years = np.arange(2026, 2041)
 np.random.seed(100)
-# Sigmoid S-Curve profile
 t = np.linspace(-3, 3, len(years))
 s_curve_pct = 1 / (1 + np.exp(-t))
-s_curve_pct = s_curve_pct / s_curve_pct[-1] * 100  # normalize to 100%
+s_curve_pct = s_curve_pct / s_curve_pct[-1] * 100
 
-# Scale by filtered total budget (in Billions PHP)
 cumulative_budget_b = s_curve_pct * (total_filtered_cost / 1e9 / 100)
 annual_budget_b = np.diff(np.insert(cumulative_budget_b, 0, 0))
 
@@ -233,7 +229,6 @@ scurve_df = pd.DataFrame({
     "Cumulative Disbursement (₱B)": np.round(cumulative_budget_b, 2),
 })
 
-# Display charts
 c_col1, c_col2 = st.columns([1.2, 1])
 
 with c_col1:
@@ -306,7 +301,6 @@ st.dataframe(
     hide_index=True,
 )
 
-# Download button for evaluators
 csv = display_df.to_csv(index=False).encode("utf-8")
 st.download_button(
     label="📥 Download Filtered Master Plan Report (CSV)",
