@@ -13,11 +13,71 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Professional Layout Styling (Edge-to-Edge Banner + Padded Content)
+# Initialize Session State for Welcome Gate
+if "entered" not in st.session_state:
+  st.session_state.entered = False
+
+# ==========================================
+# WELCOME SCREEN / GATE
+# ==========================================
+if not st.session_state.entered:
+  st.markdown(
+      """
+        <style>
+            header[data-testid="stHeader"] { display: none !important; }
+            div[data-testid="stDecoration"] { display: none !important; }
+            .stApp { background: linear-gradient(135deg, #0e1117 0%, #1f2937 100%); }
+            .welcome-card {
+                background: #ffffff;
+                color: #111111;
+                padding: 40px;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                text-align: center;
+                max-width: 600px;
+                margin: 10vh auto 20px auto;
+            }
+        </style>
+    """,
+      unsafe_allow_html=True,
+  )
+
+  col1, col2, col3 = st.columns([1, 2, 1])
+  with col2:
+    st.markdown(
+        """
+            <div class="welcome-card">
+                <h1 style="color: #1f77b4; font-size: 34px; font-weight: 800; margin-bottom: 5px;">Assalamu Alaykum</h1>
+                <p style="font-size: 16px; color: #444; font-weight: 700; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <p style="font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px;">
+                    This platform provides a comprehensive spatial and financial overview of the 
+                    <strong>Oranon Humanitarian Special Framework (OHSF)</strong> investment portfolio (₱1.50 Trillion across 95 Strategic PAPs).
+                </p>
+                <p style="font-size: 11px; color: #888; font-style: italic;">
+                    Project Manager: Engr. Airsad R. Olomodin, MBA, PhD
+                </p>
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    if st.button(
+        "🚀 Proceed to Main Dashboard",
+        type="primary",
+        use_container_width=True,
+    ):
+      st.session_state.entered = True
+      st.rerun()
+
+  st.stop()  # Stops execution here until the user clicks proceed
+
+# ==========================================
+# MAIN DASHBOARD STYLING & LOAD
+# ==========================================
 st.markdown(
     """
     <style>
-        /* Remove Streamlit default header and decoration bar */
         header[data-testid="stHeader"] {
             display: none !important;
             visibility: hidden !important;
@@ -26,13 +86,9 @@ st.markdown(
         div[data-testid="stDecoration"] {
             display: none !important;
         }
-        
-        /* Prevent horizontal scrollbar from full-width elements */
         .stApp {
             overflow-x: hidden;
         }
-        
-        /* Restore clean padding for the main dashboard content */
         .block-container {
             padding-top: 1rem !important;
             padding-bottom: 3rem !important;
@@ -40,10 +96,8 @@ st.markdown(
             padding-right: 3rem !important;
             max-width: 1400px !important;
         }
-        
         .main { background-color: #f4f6f9; }
         
-        /* True Edge-to-Edge Full-Width Banner Breakout */
         .edge-banner {
             width: 100vw;
             position: relative;
@@ -56,7 +110,6 @@ st.markdown(
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             background-color: #0e1117;
         }
-        
         .edge-banner img {
             width: 100vw !important;
             height: 280px !important;
@@ -64,8 +117,6 @@ st.markdown(
             object-position: center !important;
             display: block;
         }
-        
-        /* Clean Professional Metrics */
         .stMetric { 
             background-color: #ffffff; 
             padding: 12px 15px; 
@@ -74,8 +125,6 @@ st.markdown(
             border-top: 4px solid #1f77b4;
             margin-bottom: 10px;
         }
-        
-        /* Disclaimer Box */
         .disclaimer-box {
             background-color: #fff3cd;
             color: #856404;
@@ -85,8 +134,6 @@ st.markdown(
             font-size: 12px;
             margin-bottom: 20px;
         }
-
-        /* Mobile Optimization */
         @media screen and (max-width: 768px) {
             .edge-banner img { height: 160px !important; }
             .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
@@ -97,17 +144,13 @@ st.markdown(
 )
 
 
-# Load dataset & mock cost distribution
 @st.cache_data
 def load_data():
   excel_file = "OHSF Master Plan.xlsx"
   df = pd.read_excel(excel_file, sheet_name="MASTERPLAN PROJECTS (1)")
-
-  # Clean columns
   df["SECTOR"] = df["SECTOR"].str.strip()
   df["CATEGORY"] = df["CATEGORY"].str.strip()
 
-  # Distribute PhP 1.5 Trillion across 95 PAPs
   np.random.seed(42)
   sector_weights = {
       "Infrastructure": 0.45,
@@ -116,16 +159,14 @@ def load_data():
       "Social": 0.10,
       "Environmental": 0.05,
   }
-
   raw_weights = [
       sector_weights.get(s, 0.1) * np.random.uniform(0.5, 1.5)
       for s in df["SECTOR"]
   ]
   total_raw = sum(raw_weights)
-  total_budget = 1_500_000_000_000.0  # 1.5 Trillion PhP
+  total_budget = 1_500_000_000_000.0
   df["ESTIMATE AMOUNT"] = (np.array(raw_weights) / total_raw) * total_budget
 
-  # Assign realistic planning/implementation stages
   statuses = [
       "Master Planning",
       "Pre-Implementation",
@@ -136,21 +177,15 @@ def load_data():
   df["STATUS"] = np.random.choice(
       statuses, size=len(df), p=status_weights
   )
-
-  # Assign Conceptual Plan Area mapping (Area 1 to Area 4)
   areas = ["Area 1", "Area 2", "Area 3", "Area 4"]
   df["TARGET AREA"] = np.random.choice(areas, size=len(df))
-
   return df
 
 
 try:
   df = load_data()
 except Exception as e:
-  st.error(
-      f"Error loading 'OHSF Master Plan.xlsx'. Ensure it is in the repository"
-      f" folder. Details: {e}"
-  )
+  st.error(f"Error loading data: {e}")
   st.stop()
 
 # ==========================================
@@ -213,7 +248,6 @@ with head_col2:
     )
   st.markdown("</div>", unsafe_allow_html=True)
 
-# Official Conceptual Plan Disclaimer
 st.markdown(
     """
     <div class="disclaimer-box">
@@ -248,7 +282,6 @@ selected_area = st.sidebar.multiselect(
     default=df["TARGET AREA"].unique(),
 )
 
-# Filter dataframe
 filtered_df = df[
     (df["SECTOR"].isin(selected_sector))
     & (df["STATUS"].isin(selected_status))
@@ -291,8 +324,8 @@ st.markdown("---")
 # ==========================================
 st.subheader("🗺️ Conceptual Plan: Development Areas (1 to 4)")
 st.markdown(
-    "Click and expand each area below to review the spatial conceptual layouts in"
-    " a responsive 2×2 grid structure."
+    "Click and expand each area below to review spatial conceptual layouts in a"
+    " responsive 2×2 grid structure."
 )
 
 row1_col1, row1_col2 = st.columns(2)
@@ -344,8 +377,8 @@ st.markdown("---")
 # ==========================================
 st.subheader("📈 Construction Schedule & S-Curve (2026–2040)")
 st.markdown(
-    "Long-term master plan cash flow distribution and cumulative physical/financial"
-    " progress curve over 15 years."
+    "Long-term master plan cash flow distribution and cumulative progress curve"
+    " over 15 years."
 )
 
 years = np.arange(2026, 2041)
