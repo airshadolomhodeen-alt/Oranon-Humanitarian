@@ -111,16 +111,23 @@ st.markdown(
     " **95 Strategic PAPs** (Projects, Programs, and Activities)."
 )
 
-# Professional Profile Card
-st.markdown(
-    """
-    <div class="profile-card">
-        <h4 style="margin: 0; color: #333333;">Lead Master Planner & Principal Consultant</h4>
+# Professional Profile Card with Photo
+st.markdown('<div class="profile-card">', unsafe_allow_html=True)
+p_col1, p_col2 = st.columns([1, 6])
+with p_col1:
+  try:
+    st.image("2x21_optimized_300.png", width=90)
+  except Exception:
+    st.info("Photo missing")
+with p_col2:
+  st.markdown(
+      """
+        <h4 style="margin: 0; color: #333333; padding-top: 5px;">Lead Master Planner & Principal Consultant</h4>
         <p style="margin: 5px 0 0 0; font-size: 16px; font-weight: bold; color: #1f77b4;">ENGR. AIRSAD R. OLOMODIN, MBA, PhD</p>
-    </div>
-""",
-    unsafe_allow_html=True,
-)
+    """,
+      unsafe_allow_html=True,
+  )
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Official Conceptual Plan Disclaimer
 st.markdown(
