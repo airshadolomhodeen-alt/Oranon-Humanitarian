@@ -13,25 +13,22 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Professional Layout Styling (Absolute Zero Top Gap Fix)
+# Professional Layout Styling (Absolute Zero Top Gap & Full-Width Banner Fix)
 st.markdown(
     """
     <style>
-        /* Completely wipe out Streamlit's default top header, menu, and decoration space */
-        #MainMenu {visibility: hidden;}
-        header {visibility: hidden;}
-        div[data-testid="stDecoration"] {display: none !important;}
+        /* Completely eliminate Streamlit's default top header and deployment bar */
         header[data-testid="stHeader"] {
-            display: none !important; 
-            height: 0px !important; 
+            display: none !important;
             visibility: hidden !important;
+            height: 0px !important;
         }
         
-        /* Pull the main app container all the way to the top edge */
-        .stApp {
-            margin-top: -80px !important;
+        div[data-testid="stDecoration"] {
+            display: none !important;
         }
         
+        /* Remove top padding from the main container */
         .block-container {
             padding-top: 0rem !important;
             padding-bottom: 2rem !important;
@@ -40,21 +37,25 @@ st.markdown(
         
         .main { background-color: #f4f6f9; }
         
-        /* Sleek Edge-to-Edge Banner Container */
-        .banner-container {
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-            border-radius: 0px 0px 10px 10px;
+        /* Force Streamlit Image Container to break out edge-to-edge */
+        div[data-testid="stImage"] {
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            margin-top: 0px !important;
+            margin-bottom: 20px !important;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
         }
         
-        .banner-container img {
+        div[data-testid="stImage"] img {
             width: 100% !important;
             height: 260px !important;
             object-fit: cover !important;
             object-position: center !important;
+            display: block !important;
         }
         
         /* Clean Professional Metrics */
@@ -80,8 +81,7 @@ st.markdown(
 
         /* Mobile Optimization */
         @media screen and (max-width: 768px) {
-            .banner-container, .banner-container img { height: 160px !important; }
-            .stApp { margin-top: -50px !important; }
+            div[data-testid="stImage"] img { height: 160px !important; }
         }
     </style>
 """,
@@ -146,17 +146,15 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. FLUSH TOP BANNER
+# 1. EDGE-TO-EDGE FULL-WIDTH BANNER
 # ==========================================
-st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 try:
-  st.image("Banner.jfif")
+  st.image("Banner.jfif", use_container_width=True)
 except Exception:
   st.warning(
       "Banner image ('Banner.jfif') not found in directory. Please upload it"
       " to GitHub."
   )
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 2. EXECUTIVE HEADER, PROFILE & TIME
