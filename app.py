@@ -13,11 +13,39 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Responsive Styling for Executive Command Center Look
+# Custom Responsive Styling for Edge-to-Edge Banner & Executive Look
 st.markdown(
     """
     <style>
     .main { background-color: #f4f6f9; }
+    
+    /* Remove default Streamlit top padding to let banner sit flush at the top */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 2rem !important;
+        max-width: 100% !important;
+    }
+    
+    /* Full-Width Edge-to-Edge Banner Container */
+    .banner-container {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        height: 320px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        margin-bottom: 25px;
+    }
+    
+    .banner-container img {
+        width: 100% !important;
+        height: 320px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
     
     /* Responsive Metrics */
     .stMetric { 
@@ -29,24 +57,6 @@ st.markdown(
         margin-bottom: 10px;
     }
     
-    /* Controlled Sleek Banner Container */
-    .banner-container {
-        width: 100%;
-        max-height: 280px;
-        overflow: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    
-    .banner-container img {
-        width: 100% !important;
-        height: 280px !important;
-        object-fit: cover !important; /* Crops cleanly to banner proportions */
-        object-position: center !important;
-    }
-    
     /* Disclaimer Box */
     .disclaimer-box {
         background-color: #fff3cd;
@@ -55,12 +65,12 @@ st.markdown(
         border-radius: 6px;
         border: 1px solid #ffeeba;
         font-size: 12px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     /* Mobile Responsiveness Improvements */
     @media screen and (max-width: 768px) {
-        .banner-container, .banner-container img { height: 160px !important; }
+        .banner-container, .banner-container img { height: 180px !important; }
         .stMetric { font-size: 14px !important; }
     }
     </style>
@@ -126,7 +136,7 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. CONTROLLED SLEEK BANNER (TOP)
+# 1. FULL-WIDTH EDGE-TO-EDGE BANNER (TOP)
 # ==========================================
 st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 try:
