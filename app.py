@@ -155,17 +155,19 @@ with col4:
 st.markdown("---")
 
 # ==========================================
-# 2. CONCEPTUAL PLAN: AREAS 1 TO 4
+# 2. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID LAYOUT)
 # ==========================================
 st.subheader("🗺️ Conceptual Plan: Development Areas (1 to 4)")
 st.markdown(
-    "Click and expand each area below to review the spatial conceptual layouts."
+    "Click and expand each area below to review the spatial conceptual layouts in"
+    " a 2×2 grid structure."
 )
 
-col_a1, col_a2, col_a3, col_a4 = st.columns(4)
+# Row 1: Area 1 & Area 2
+row1_col1, row1_col2 = st.columns(2)
 
-with col_a1:
-  with st.expander("📍 Area 1 Conceptual Plan"):
+with row1_col1:
+  with st.expander("📍 Area 1 Conceptual Plan", expanded=True):
     try:
       st.image("area 1.jfif", use_container_width=True)
     except Exception:
@@ -174,8 +176,8 @@ with col_a1:
         f"PAP Count: {len(filtered_df[filtered_df['TARGET AREA'] == 'Area 1'])}"
     )
 
-with col_a2:
-  with st.expander("📍 Area 2 Conceptual Plan"):
+with row1_col2:
+  with st.expander("📍 Area 2 Conceptual Plan", expanded=True):
     try:
       st.image("Area 2.jfif", use_container_width=True)
     except Exception:
@@ -184,8 +186,11 @@ with col_a2:
         f"PAP Count: {len(filtered_df[filtered_df['TARGET AREA'] == 'Area 2'])}"
     )
 
-with col_a3:
-  with st.expander("📍 Area 3 Conceptual Plan"):
+# Row 2: Area 3 & Area 4
+row2_col1, row2_col2 = st.columns(2)
+
+with row2_col1:
+  with st.expander("📍 Area 3 Conceptual Plan", expanded=True):
     try:
       st.image("area 3.jfif", use_container_width=True)
     except Exception:
@@ -194,8 +199,8 @@ with col_a3:
         f"PAP Count: {len(filtered_df[filtered_df['TARGET AREA'] == 'Area 3'])}"
     )
 
-with col_a4:
-  with st.expander("📍 Area 4 Conceptual Plan"):
+with row2_col2:
+  with st.expander("📍 Area 4 Conceptual Plan", expanded=True):
     try:
       st.image("Area 4.jfif", use_container_width=True)
     except Exception:
