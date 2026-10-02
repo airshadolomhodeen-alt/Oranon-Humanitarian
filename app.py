@@ -18,7 +18,7 @@ if "entered" not in st.session_state:
   st.session_state.entered = False
 
 # ==========================================
-# WELCOME SCREEN / GATE (WITH ARABIC TYPOGRAPHY 67px)
+# WELCOME SCREEN / GATE (WITH CENTERED SEAL & 67px ARABIC TITLE)
 # ==========================================
 if not st.session_state.entered:
   st.markdown(
@@ -37,12 +37,12 @@ if not st.session_state.entered:
             .welcome-card {
                 background: rgba(13, 40, 24, 0.95);
                 color: #ffffff;
-                padding: 45px 35px;
+                padding: 35px 35px;
                 border-radius: 20px;
                 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
                 text-align: center;
                 max-width: 660px;
-                margin: 6vh auto 20px auto;
+                margin: 4vh auto 20px auto;
                 border-top: 5px solid #d4af37;
                 border: 1px solid rgba(212, 175, 55, 0.3);
             }
@@ -58,10 +58,10 @@ if not st.session_state.entered:
             }
             
             .english-subtitle {
-                font-size: 26px;
+                font-size: 24px;
                 color: #ffffff;
                 font-weight: 700;
-                margin-top: 10px;
+                margin-top: 5px;
                 margin-bottom: 10px;
             }
             
@@ -69,7 +69,7 @@ if not st.session_state.entered:
                 font-size: 14px;
                 color: #ffffff;
                 line-height: 1.6;
-                margin-bottom: 25px;
+                margin-bottom: 20px;
             }
             
             .manager-tag {
@@ -100,6 +100,14 @@ if not st.session_state.entered:
 
   col1, col2, col3 = st.columns([1, 2.4, 1])
   with col2:
+    # Centered Logo inside the welcome card container area
+    logo_col1, logo_col2, logo_col3 = st.columns([1, 1.2, 1])
+    with logo_col2:
+      try:
+        st.image("logo.png", width=130)
+      except Exception:
+        st.info("logo.png missing")
+
     st.markdown(
         """
             <div class="welcome-card">
@@ -268,7 +276,6 @@ st.markdown(
         @media screen and (max-width: 768px) {
             .edge-banner img { height: 160px !important; }
             .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
-            .arabic-title { font-size: 48px !important; }
         }
     </style>
 """,
