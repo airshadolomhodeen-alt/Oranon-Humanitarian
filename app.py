@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Professional Layout Styling (Stable Edge-to-Edge Banner & Zero Top Gap)
+# Professional Layout Styling (Zero Top Gap & Edge-to-Edge Banner)
 st.markdown(
     """
     <style>
@@ -27,30 +27,28 @@ st.markdown(
             display: none !important;
         }
         
-        /* Streamline top padding */
+        /* Streamline top padding and background */
         .block-container {
-            padding-top: 1rem !important;
+            padding-top: 0rem !important;
             padding-bottom: 2rem !important;
+            max-width: 100% !important;
         }
         
         .main { background-color: #f4f6f9; }
         
-        /* Stable Full-Width Banner Container */
-        .banner-wrapper {
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-            border-radius: 0px 0px 10px 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
-            background-color: #0e1117;
+        /* Direct styling for the banner image to sit flush at the top */
+        div[data-testid="stImage"] {
+            margin-top: 0px !important;
+            margin-bottom: 15px !important;
         }
         
-        .banner-wrapper img {
+        div[data-testid="stImage"] img {
             width: 100% !important;
-            height: 260px !important;
+            height: 270px !important;
             object-fit: cover !important;
             object-position: center !important;
+            border-radius: 0px 0px 8px 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
         
         /* Clean Professional Metrics */
@@ -76,7 +74,7 @@ st.markdown(
 
         /* Mobile Optimization */
         @media screen and (max-width: 768px) {
-            .banner-wrapper, .banner-wrapper img { height: 160px !important; }
+            div[data-testid="stImage"] img { height: 160px !important; }
         }
     </style>
 """,
@@ -141,17 +139,16 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. VISIBLE FULL-WIDTH BANNER
+# 1. CLEAN FLUSH BANNER
 # ==========================================
-st.markdown('<div class="banner-wrapper">', unsafe_allow_html=True)
 try:
   st.image("Banner.jfif", use_container_width=True)
 except Exception:
-  st.warning(
-      "Banner image ('Banner.jfif') not found in directory. Please check file"
-      " name and case sensitivity."
+  st.error(
+      "⚠️ Banner image ('Banner.jfif') could not be found in your repository root"
+      " directory. Please verify the filename and extension (e.g., .jpg vs"
+      " .jfif)."
   )
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
 # 2. EXECUTIVE HEADER, PROFILE & TIME
