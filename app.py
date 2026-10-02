@@ -131,12 +131,15 @@ avg_cost = (
     total_filtered_cost / total_paps if total_paps > 0 else 0
 )
 
+# Smart formatting for Trillions vs Billions
+if total_filtered_cost >= 1_000_000_000_000:
+  cost_display = f"₱{total_filtered_cost / 1e12:,.2f} Trillion"
+else:
+  cost_display = f"₱{total_filtered_cost / 1e9:,.2f} Billion"
+
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-  st.metric(
-      label="Filtered Investment Cost",
-      value=f"₱{total_filtered_cost / 1e9:,.2f} B",
-  )
+  st.metric(label="Filtered Investment Cost", value=cost_display)
 with col2:
   st.metric(label="Total PAPs Covered", value=f"{total_paps} / 95")
 with col3:
@@ -212,7 +215,6 @@ st.markdown(
     " progress curve over 15 years."
 )
 
-# Generate S-curve simulation data for 2026-2040
 years = np.arange(2026, 2041)
 np.random.seed(100)
 t = np.linspace(-3, 3, len(years))
