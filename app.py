@@ -35,21 +35,22 @@ if not st.session_state.entered:
             }
             
             .welcome-card {
-                background: rgba(255, 255, 255, 0.98);
-                color: #111111;
+                background: rgba(13, 40, 24, 0.95);
+                color: #ffffff;
                 padding: 45px 35px;
                 border-radius: 20px;
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
                 text-align: center;
                 max-width: 620px;
                 margin: 8vh auto 20px auto;
                 border-top: 5px solid #d4af37;
+                border: 1px solid rgba(212, 175, 55, 0.2);
             }
             
             .arabic-title {
                 font-family: 'Amiri', serif;
                 font-size: 46px;
-                color: #1b4d3e;
+                color: #d4af37;
                 font-weight: 700;
                 margin-bottom: 0px;
                 line-height: 1.2;
@@ -58,7 +59,7 @@ if not st.session_state.entered:
             
             .english-subtitle {
                 font-size: 26px;
-                color: #2c3e50;
+                color: #ffffff;
                 font-weight: 700;
                 margin-top: 5px;
                 margin-bottom: 10px;
@@ -66,31 +67,31 @@ if not st.session_state.entered:
             
             .welcome-desc {
                 font-size: 13px;
-                color: #555658;
+                color: #d1d5db;
                 line-height: 1.6;
                 margin-bottom: 25px;
             }
             
             .manager-tag {
                 font-size: 11px;
-                color: #7f8c8d;
+                color: #9ca3af;
                 font-style: italic;
                 font-weight: 500;
             }
             
             .stButton button {
-                background-color: #1b4d3e !important;
-                color: #ffffff !important;
-                font-weight: 600 !important;
+                background-color: #d4af37 !important;
+                color: #071911 !important;
+                font-weight: 700 !important;
                 border-radius: 8px !important;
                 border: none !important;
                 padding: 0.6rem 1.5rem !important;
-                box-shadow: 0 4px 12px rgba(27, 77, 62, 0.3) !important;
+                box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
                 transition: all 0.3s ease !important;
             }
             .stButton button:hover {
-                background-color: #24634f !important;
-                box-shadow: 0 6px 16px rgba(27, 77, 62, 0.4) !important;
+                background-color: #e6c547 !important;
+                box-shadow: 0 6px 16px rgba(212, 175, 55, 0.5) !important;
             }
         </style>
     """,
@@ -105,10 +106,10 @@ if not st.session_state.entered:
                 <div class="arabic-title">السَّلاَمُ عَلَيْكُمْ</div>
                 <div class="english-subtitle">Assalamu Alaykum</div>
                 <p style="font-size: 14px; color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
-                <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;">
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0;">
                 <p class="welcome-desc">
                     This platform provides a comprehensive spatial and financial overview of the 
-                    <strong>Oranon Humanitarian Special Framework (OHSF)</strong> investment portfolio (₱1.50 Trillion across 95 Strategic PAPs).
+                    <strong style="color: #ffffff;">Oranon Humanitarian Special Framework (OHSF)</strong> investment portfolio (₱1.50 Trillion across 95 Strategic PAPs).
                 </p>
                 <div class="manager-tag">
                     Project Manager: Engr. Airsad R. Olomodin, MBA, PhD
@@ -129,7 +130,7 @@ if not st.session_state.entered:
   st.stop()
 
 # ==========================================
-# MAIN DASHBOARD STYLING & LOAD (DEEP EMERALD THEME)
+# FULL DEEP EMERALD GREEN THEME STYLING
 # ==========================================
 st.markdown(
     """
@@ -144,10 +145,15 @@ st.markdown(
         div[data-testid="stDecoration"] {
             display: none !important;
         }
+        
+        /* Global Deep Emerald Background */
         .stApp {
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #071911 0%, #0d2818 50%, #113827 100%) !important;
+            color: #f3f4f6 !important;
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
+        
         .block-container {
             padding-top: 1rem !important;
             padding-bottom: 3rem !important;
@@ -155,7 +161,14 @@ st.markdown(
             padding-right: 3rem !important;
             max-width: 1400px !important;
         }
-        .main { background-color: #f4f6f9; }
+        
+        /* Typography overrides for dark background */
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff !important;
+        }
+        p, span, label {
+            color: #e5e7eb !important;
+        }
         
         .edge-banner {
             width: 100vw;
@@ -166,7 +179,7 @@ st.markdown(
             margin-right: -50vw;
             margin-top: -1rem;
             margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             background-color: #071911;
         }
         .edge-banner img {
@@ -177,31 +190,62 @@ st.markdown(
             display: block;
         }
         
-        /* Emerald themed Metric Cards */
+        /* Glassmorphism Emerald Cards for Metrics */
         .stMetric { 
-            background-color: #ffffff; 
+            background: rgba(13, 40, 24, 0.85) !important;
             padding: 12px 15px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04); 
-            border-top: 4px solid #1b4d3e;
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            border-top: 4px solid #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             margin-bottom: 10px;
         }
+        .stMetric label {
+            color: #d4af37 !important;
+            font-weight: 600 !important;
+        }
+        .stMetric [data-testid="stMetricValue"] {
+            color: #ffffff !important;
+        }
         
+        /* Executive Header Box / Profile Container */
+        .exec-box {
+            background: rgba(13, 40, 24, 0.85);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-left: 4px solid #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
         /* Disclaimer Box */
         .disclaimer-box {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 10px 14px;
-            border-radius: 6px;
-            border: 1px solid #ffeeba;
+            background: rgba(202, 138, 4, 0.15);
+            color: #fde047;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(234, 179, 8, 0.4);
             font-size: 12px;
             margin-bottom: 20px;
         }
 
+        /* Expander styling */
+        .streamlit-expanderHeader {
+            background: rgba(13, 40, 24, 0.9) !important;
+            color: #ffffff !important;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        div[data-testid="stExpander"] {
+            background: rgba(7, 25, 17, 0.6) !important;
+            border: 1px solid rgba(212, 175, 55, 0.15) !important;
+            border-radius: 8px;
+        }
+
         /* Sidebar Customization */
         [data-testid="stSidebar"] {
-            background-color: #071911;
-            color: #ffffff;
+            background-color: #071911 !important;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
         }
         [data-testid="stSidebar"] label {
             color: #ffffff !important;
@@ -209,6 +253,12 @@ st.markdown(
         }
         [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
             color: #d4af37 !important;
+        }
+
+        /* Dataframes & Tables */
+        dataframe, table {
+            background-color: #0d2818 !important;
+            color: #ffffff !important;
         }
 
         @media screen and (max-width: 768px) {
@@ -288,10 +338,10 @@ head_col1, head_col2 = st.columns([1.7, 1.3])
 with head_col1:
   st.markdown(
       """
-        <h1 style='margin-bottom: 0px; font-size: 24px; color: #1b4d3e; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
-        <p style='margin-top: 4px; font-size: 12px; color: #333; font-weight: 500; line-height: 1.3;'>
-            <strong>Oranon Humanitarian Special Framework (OHSF)</strong><br>
-            Total Investment Portfolio: <code>₱1.50 Trillion</code> across <b>95 Strategic PAPs</b>
+        <h1 style='margin-bottom: 0px; font-size: 24px; color: #ffffff; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
+        <p style='margin-top: 4px; font-size: 12px; color: #d1d5db; font-weight: 500; line-height: 1.3;'>
+            <strong style="color: #ffffff;">Oranon Humanitarian Special Framework (OHSF)</strong><br>
+            Total Investment Portfolio: <code style="background: rgba(212,175,55,0.2); color: #d4af37; padding: 2px 6px; border-radius: 4px;">₱1.50 Trillion</code> across <b style="color: #ffffff;">95 Strategic PAPs</b>
         </p>
     """,
       unsafe_allow_html=True,
@@ -300,8 +350,8 @@ with head_col1:
 with head_col2:
   st.markdown(
       f"""
-    <div style="background-color: #ffffff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-left: 4px solid #1b4d3e;">
-        <div style="font-size: 11px; font-weight: 700; color: #111; margin-bottom: 6px; border-bottom: 1px solid #eee; padding-bottom: 3px;">
+    <div class="exec-box">
+        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
             🕒 {pht_time_str} (PHT)
         </div>
     """,
@@ -317,9 +367,9 @@ with head_col2:
   with p_subcol2:
     st.markdown(
         """
-        <p style="margin: 0; font-size: 9px; color: #555; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
-        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #1b4d3e; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
-        <p style="margin: 0; font-size: 10px; color: #222; font-weight: 700;">MBA, PhD</p>
+        <p style="margin: 0; font-size: 9px; color: #9ca3af; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #ffffff; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 0; font-size: 10px; color: #d4af37; font-weight: 700;">MBA, PhD</p>
         """,
         unsafe_allow_html=True,
     )
@@ -334,7 +384,11 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown("---")
+st.markdown(
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    " N",
+    unsafe_allow_html=True,
+)
 
 # ==========================================
 # SIDEBAR FILTERS
@@ -394,7 +448,11 @@ with m4:
       value=f"{(total_filtered_cost / 1_500_000_000_000) * 100:.1f}%",
   )
 
-st.markdown("---")
+st.markdown(
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    " N",
+    unsafe_allow_html=True,
+)
 
 # ==========================================
 # 3. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID)
@@ -447,7 +505,11 @@ with row2_col2:
         f"PAP Count: {len(filtered_df[filtered_df['TARGET AREA'] == 'Area 4'])}"
     )
 
-st.markdown("---")
+st.markdown(
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    " N",
+    unsafe_allow_html=True,
+)
 
 # ==========================================
 # 4. CONSTRUCTION SCHEDULE & S-CURVE (2026-2040)
@@ -482,9 +544,14 @@ with c_col1:
       x="Year",
       y="Annual Disbursement (₱B)",
       title="Annual Disbursement Cash Flow (₱B)",
-      template="plotly_white",
+      template="plotly_dark",
   )
-  fig_bar.update_layout(title_font_size=14, margin=dict(t=40, b=20, l=20, r=20))
+  fig_bar.update_layout(
+      title_font_size=14,
+      paper_bgcolor="rgba(0,0,0,0)",
+      plot_bgcolor="rgba(0,0,0,0)",
+      margin=dict(t=40, b=20, l=20, r=20),
+  )
   st.plotly_chart(fig_bar, use_container_width=True)
 
 with c_col2:
@@ -494,17 +561,24 @@ with c_col2:
       y="Cumulative Progress (%)",
       title="Cumulative Financial Progress S-Curve (%)",
       markers=True,
-      template="plotly_white",
+      template="plotly_dark",
   )
   fig_line.update_layout(
-      title_font_size=14, margin=dict(t=40, b=20, l=20, r=20)
+      title_font_size=14,
+      paper_bgcolor="rgba(0,0,0,0)",
+      plot_bgcolor="rgba(0,0,0,0)",
+      margin=dict(t=40, b=20, l=20, r=20),
   )
   st.plotly_chart(fig_line, use_container_width=True)
 
 with st.expander("🔍 View Detailed Schedule & Disbursement Table (2026-2040)"):
   st.dataframe(scurve_df, use_container_width=True, hide_index=True)
 
-st.markdown("---")
+st.markdown(
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    " N",
+    unsafe_allow_html=True,
+)
 
 # ==========================================
 # 5. ANALYTICS & SECTOR BREAKDOWN CHARTS
@@ -524,11 +598,13 @@ with col_chart1:
         x="SECTOR",
         y="ESTIMATE (₱B)",
         title="Investment Breakdown by Sector (₱B)",
-        template="plotly_white",
+        template="plotly_dark",
         color="SECTOR",
     )
     fig_sector.update_layout(
         title_font_size=14,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         margin=dict(t=40, b=20, l=20, r=20),
         showlegend=False,
     )
@@ -547,11 +623,13 @@ with col_chart2:
         x="Project Stage",
         y="Count",
         title="PAP Distribution by Project Stage",
-        template="plotly_white",
+        template="plotly_dark",
         color="Project Stage",
     )
     fig_status.update_layout(
         title_font_size=14,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         margin=dict(t=40, b=20, l=20, r=20),
         showlegend=False,
     )
@@ -559,7 +637,11 @@ with col_chart2:
   else:
     st.warning("No data available for current filters.")
 
-st.markdown("---")
+st.markdown(
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    " N",
+    unsafe_allow_html=True,
+)
 
 # ==========================================
 # 6. DETAILED MASTER PLAN DATA TABLE
