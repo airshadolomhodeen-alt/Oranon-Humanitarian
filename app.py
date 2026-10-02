@@ -13,36 +13,25 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Responsive Styling for Edge-to-Edge Banner & Executive Look
+# Custom Clean Styling (Fixed banner sizing without whitespace bugs)
 st.markdown(
     """
     <style>
     .main { background-color: #f4f6f9; }
     
-    /* Remove default Streamlit top padding to let banner sit flush at the top */
-    .block-container {
-        padding-top: 1rem !important;
-        padding-bottom: 2rem !important;
-        max-width: 100% !important;
-    }
-    
-    /* Full-Width Edge-to-Edge Banner Container */
+    /* Compact, Clean Banner Container */
     .banner-container {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        height: 320px;
+        width: 100%;
+        height: 240px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
     }
     
     .banner-container img {
         width: 100% !important;
-        height: 320px !important;
+        height: 240px !important;
         object-fit: cover !important;
         object-position: center !important;
     }
@@ -70,7 +59,7 @@ st.markdown(
 
     /* Mobile Responsiveness Improvements */
     @media screen and (max-width: 768px) {
-        .banner-container, .banner-container img { height: 180px !important; }
+        .banner-container, .banner-container img { height: 150px !important; }
         .stMetric { font-size: 14px !important; }
     }
     </style>
@@ -136,7 +125,7 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. FULL-WIDTH EDGE-TO-EDGE BANNER (TOP)
+# 1. CLEAN STANDARD-SIZE BANNER (TOP)
 # ==========================================
 st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 try:
