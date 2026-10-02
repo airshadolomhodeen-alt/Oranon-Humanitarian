@@ -78,7 +78,6 @@ if not st.session_state.entered:
                 font-weight: 500;
             }
             
-            /* Custom styling for the Proceed Button inside the card wrapper */
             .stButton button {
                 background-color: #1b4d3e !important;
                 color: #ffffff !important;
@@ -127,14 +126,16 @@ if not st.session_state.entered:
       st.session_state.entered = True
       st.rerun()
 
-  st.stop()  # Stops execution here until user clicks proceed
+  st.stop()
 
 # ==========================================
-# MAIN DASHBOARD STYLING & LOAD
+# MAIN DASHBOARD STYLING & LOAD (DEEP EMERALD THEME)
 # ==========================================
 st.markdown(
     """
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
         header[data-testid="stHeader"] {
             display: none !important;
             visibility: hidden !important;
@@ -145,6 +146,7 @@ st.markdown(
         }
         .stApp {
             overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
         }
         .block-container {
             padding-top: 1rem !important;
@@ -165,7 +167,7 @@ st.markdown(
             margin-top: -1rem;
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            background-color: #0e1117;
+            background-color: #071911;
         }
         .edge-banner img {
             width: 100vw !important;
@@ -174,6 +176,8 @@ st.markdown(
             object-position: center !important;
             display: block;
         }
+        
+        /* Emerald themed Metric Cards */
         .stMetric { 
             background-color: #ffffff; 
             padding: 12px 15px; 
@@ -182,6 +186,8 @@ st.markdown(
             border-top: 4px solid #1b4d3e;
             margin-bottom: 10px;
         }
+        
+        /* Disclaimer Box */
         .disclaimer-box {
             background-color: #fff3cd;
             color: #856404;
@@ -191,6 +197,20 @@ st.markdown(
             font-size: 12px;
             margin-bottom: 20px;
         }
+
+        /* Sidebar Customization */
+        [data-testid="stSidebar"] {
+            background-color: #071911;
+            color: #ffffff;
+        }
+        [data-testid="stSidebar"] label {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+            color: #d4af37 !important;
+        }
+
         @media screen and (max-width: 768px) {
             .edge-banner img { height: 160px !important; }
             .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
