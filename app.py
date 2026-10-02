@@ -10,13 +10,20 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Styling for professional look
+# Custom Styling for professional executive look
 st.markdown(
     """
     <style>
     .main { background-color: #f8f9fa; }
     .stMetric { background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     .stAlert { border-radius: 8px; }
+    /* Professional styling for banner container */
+    .banner-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
     </style>
 """,
     unsafe_allow_html=True,
@@ -75,8 +82,16 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. BANNER POSITION (TOP)
+# 1. HEADER & BANNER POSITION (TOP)
 # ==========================================
+st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
+st.markdown(
+    "**Total Project Investment Portfolio:** `₱1.50 Trillion` distributed across"
+    " **95 Strategic PAPs** (Projects, Programs, and Activities)."
+)
+
+# Professional Banner Wrapped in Container
+st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 try:
   st.image("Banner.jfif", use_container_width=True)
 except Exception:
@@ -84,12 +99,8 @@ except Exception:
       "Banner image ('Banner.jfif') not found in directory. Please upload it"
       " to GitHub."
   )
+st.markdown("</div>", unsafe_allow_html=True)
 
-st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
-st.markdown(
-    "**Total Project Investment Portfolio:** `PhP 1.5 Trillion` distributed across"
-    " **95 Strategic PAPs** (Projects, Programs, and Activities)."
-)
 st.markdown("---")
 
 # ==========================================
@@ -155,7 +166,7 @@ with col4:
 st.markdown("---")
 
 # ==========================================
-# 2. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID LAYOUT)
+# 2. CONCEPTUAL PLAN: AREAS 1 TO 4 (2x2 GRID)
 # ==========================================
 st.subheader("🗺️ Conceptual Plan: Development Areas (1 to 4)")
 st.markdown(
@@ -163,9 +174,7 @@ st.markdown(
     " a 2×2 grid structure."
 )
 
-# Row 1: Area 1 & Area 2
 row1_col1, row1_col2 = st.columns(2)
-
 with row1_col1:
   with st.expander("📍 Area 1 Conceptual Plan", expanded=True):
     try:
@@ -186,9 +195,7 @@ with row1_col2:
         f"PAP Count: {len(filtered_df[filtered_df['TARGET AREA'] == 'Area 2'])}"
     )
 
-# Row 2: Area 3 & Area 4
 row2_col1, row2_col2 = st.columns(2)
-
 with row2_col1:
   with st.expander("📍 Area 3 Conceptual Plan", expanded=True):
     try:
@@ -237,7 +244,6 @@ scurve_df = pd.DataFrame({
 })
 
 c_col1, c_col2 = st.columns([1.2, 1])
-
 with c_col1:
   st.markdown("##### Annual vs. Cumulative Cash Flow")
   st.bar_chart(
@@ -259,7 +265,6 @@ st.markdown("---")
 # 4. ANALYTICS & SECTOR BREAKDOWN CHARTS
 # ==========================================
 col_chart1, col_chart2 = st.columns(2)
-
 with col_chart1:
   st.subheader("💰 Investment Breakdown by Sector")
   if not filtered_df.empty:
