@@ -18,7 +18,7 @@ if "entered" not in st.session_state:
   st.session_state.entered = False
 
 # ==========================================
-# WELCOME SCREEN / GATE (WITH ARABIC TYPOGRAPHY & THEME)
+# WELCOME SCREEN / GATE (WITH ARABIC TYPOGRAPHY 67px)
 # ==========================================
 if not st.session_state.entered:
   st.markdown(
@@ -41,15 +41,15 @@ if not st.session_state.entered:
                 border-radius: 20px;
                 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
                 text-align: center;
-                max-width: 620px;
-                margin: 8vh auto 20px auto;
+                max-width: 660px;
+                margin: 6vh auto 20px auto;
                 border-top: 5px solid #d4af37;
                 border: 1px solid rgba(212, 175, 55, 0.3);
             }
             
             .arabic-title {
                 font-family: 'Amiri', serif;
-                font-size: 46px;
+                font-size: 67px;
                 color: #d4af37;
                 font-weight: 700;
                 margin-bottom: 0px;
@@ -61,19 +61,19 @@ if not st.session_state.entered:
                 font-size: 26px;
                 color: #ffffff;
                 font-weight: 700;
-                margin-top: 5px;
+                margin-top: 10px;
                 margin-bottom: 10px;
             }
             
             .welcome-desc {
-                font-size: 13px;
+                font-size: 14px;
                 color: #ffffff;
                 line-height: 1.6;
                 margin-bottom: 25px;
             }
             
             .manager-tag {
-                font-size: 11px;
+                font-size: 12px;
                 color: #d4af37;
                 font-style: italic;
                 font-weight: 500;
@@ -85,7 +85,7 @@ if not st.session_state.entered:
                 font-weight: 700 !important;
                 border-radius: 8px !important;
                 border: none !important;
-                padding: 0.6rem 1.5rem !important;
+                padding: 0.7rem 1.5rem !important;
                 box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
                 transition: all 0.3s ease !important;
             }
@@ -98,14 +98,14 @@ if not st.session_state.entered:
       unsafe_allow_html=True,
   )
 
-  col1, col2, col3 = st.columns([1, 2.2, 1])
+  col1, col2, col3 = st.columns([1, 2.4, 1])
   with col2:
     st.markdown(
         """
             <div class="welcome-card">
                 <div class="arabic-title">السَّلاَمُ عَلَيْكُمْ</div>
                 <div class="english-subtitle">Assalamu Alaykum</div>
-                <p style="font-size: 14px; color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
+                <p style="font-size: 15px; color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
                 <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.2); margin: 20px 0;">
                 <p class="welcome-desc">
                     This platform provides a comprehensive spatial and financial overview of the 
@@ -218,18 +218,21 @@ st.markdown(
             border: 1px solid rgba(212, 175, 55, 0.4);
         }
 
-        /* Disclaimer Box */
+        /* Enlarged & Prominent Disclaimer Box */
         .disclaimer-box {
-            background: rgba(202, 138, 4, 0.25);
-            color: #fef08a !important;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid rgba(234, 179, 8, 0.6);
-            font-size: 12px;
-            margin-bottom: 20px;
+            background: rgba(202, 138, 4, 0.3);
+            color: #ffffff !important;
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(234, 179, 8, 0.8);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .disclaimer-box strong {
-            color: #ffffff !important;
+            color: #fef08a !important;
+            font-size: 15px;
         }
 
         /* Expander styling for perfect dark mode visibility */
@@ -265,6 +268,7 @@ st.markdown(
         @media screen and (max-width: 768px) {
             .edge-banner img { height: 160px !important; }
             .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .arabic-title { font-size: 48px !important; }
         }
     </style>
 """,
