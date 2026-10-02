@@ -23,12 +23,22 @@ st.markdown(
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         margin-bottom: 20px;
     }
-    .card {
+    .profile-card {
         background-color: #ffffff;
-        padding: 20px;
+        padding: 15px 20px;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         margin-bottom: 20px;
+        border-left: 5px solid #1f77b4;
+    }
+    .disclaimer-box {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 12px 18px;
+        border-radius: 8px;
+        border: 1px solid #ffeeba;
+        font-size: 14px;
+        margin-bottom: 25px;
     }
     </style>
 """,
@@ -93,12 +103,33 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. HEADER & BANNER POSITION (TOP)
+# 1. HEADER, PROFILE & DISCLAIMER
 # ==========================================
 st.title("Oranon Humanitarian Special Framework (OHSF) Master Plan Dashboard")
 st.markdown(
     "**Total Project Investment Portfolio:** `₱1.50 Trillion` distributed across"
     " **95 Strategic PAPs** (Projects, Programs, and Activities)."
+)
+
+# Professional Profile Card
+st.markdown(
+    """
+    <div class="profile-card">
+        <h4 style="margin: 0; color: #333333;">Lead Master Planner & Principal Consultant</h4>
+        <p style="margin: 5px 0 0 0; font-size: 16px; font-weight: bold; color: #1f77b4;">ENGR. AIRSAD R. OLOMODIN, MBA, PhD</p>
+    </div>
+""",
+    unsafe_allow_html=True,
+)
+
+# Official Conceptual Plan Disclaimer
+st.markdown(
+    """
+    <div class="disclaimer-box">
+        <strong>⚠️ DISCLAIMER:</strong> This dashboard and its associated master plan layouts represent a <strong>Conceptual Plan</strong> only. All spatial allocations, technical designs, and financial projections are subject to final Detailed Engineering Design (DED) and Comprehensive Feasibility Study (FS) prior to project execution and implementation.
+    </div>
+""",
+    unsafe_allow_html=True,
 )
 
 # Professional Banner Wrapped in Container
