@@ -13,25 +13,36 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Clean Styling (Fixed banner sizing without whitespace bugs)
+# Custom Styling to Eliminate Top Gap & Fix Banner Layout
 st.markdown(
     """
     <style>
+    /* Remove Streamlit's default top header whitespace */
+    header[data-testid="stHeader"] {
+        background: transparent;
+    }
+    
+    .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 2rem !important;
+        max-width: 100% !important;
+    }
+    
     .main { background-color: #f4f6f9; }
     
-    /* Compact, Clean Banner Container */
+    /* Sleek Banner Container */
     .banner-container {
         width: 100%;
-        height: 240px;
+        height: 250px;
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 0px 0px 8px 8px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         margin-bottom: 20px;
     }
     
     .banner-container img {
         width: 100% !important;
-        height: 240px !important;
+        height: 250px !important;
         object-fit: cover !important;
         object-position: center !important;
     }
@@ -125,7 +136,7 @@ except Exception as e:
   st.stop()
 
 # ==========================================
-# 1. CLEAN STANDARD-SIZE BANNER (TOP)
+# 1. FLUSH TOP BANNER
 # ==========================================
 st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 try:
