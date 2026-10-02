@@ -67,14 +67,14 @@ if not st.session_state.entered:
             
             .welcome-desc {
                 font-size: 13px;
-                color: #d1d5db;
+                color: #f3f4f6;
                 line-height: 1.6;
                 margin-bottom: 25px;
             }
             
             .manager-tag {
                 font-size: 11px;
-                color: #9ca3af;
+                color: #d1d5db;
                 font-style: italic;
                 font-weight: 500;
             }
@@ -130,7 +130,7 @@ if not st.session_state.entered:
   st.stop()
 
 # ==========================================
-# FULL DEEP EMERALD GREEN THEME STYLING
+# FULL SCREEN & DEEP EMERALD GREEN THEME STYLING
 # ==========================================
 st.markdown(
     """
@@ -146,10 +146,10 @@ st.markdown(
             display: none !important;
         }
         
-        /* Global Deep Emerald Background */
+        /* Global Deep Emerald Background & Full Screen Expansion */
         .stApp {
             background: linear-gradient(135deg, #071911 0%, #0d2818 50%, #113827 100%) !important;
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
@@ -157,17 +157,17 @@ st.markdown(
         .block-container {
             padding-top: 1rem !important;
             padding-bottom: 3rem !important;
-            padding-left: 3rem !important;
-            padding-right: 3rem !important;
-            max-width: 1400px !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+            max-width: 100% !important;
         }
         
-        /* Typography overrides for dark background */
+        /* Typography overrides for full visibility */
         h1, h2, h3, h4, h5, h6 {
             color: #ffffff !important;
         }
-        p, span, label {
-            color: #e5e7eb !important;
+        p, span, label, div, small {
+            color: #ffffff !important;
         }
         
         .edge-banner {
@@ -192,12 +192,12 @@ st.markdown(
         
         /* Glassmorphism Emerald Cards for Metrics */
         .stMetric { 
-            background: rgba(13, 40, 24, 0.85) !important;
+            background: rgba(13, 40, 24, 0.9) !important;
             padding: 12px 15px; 
             border-radius: 10px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
             border-top: 4px solid #d4af37;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             margin-bottom: 10px;
         }
         .stMetric label {
@@ -210,36 +210,43 @@ st.markdown(
         
         /* Executive Header Box / Profile Container */
         .exec-box {
-            background: rgba(13, 40, 24, 0.85);
+            background: rgba(13, 40, 24, 0.9);
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border-left: 4px solid #d4af37;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         /* Disclaimer Box */
         .disclaimer-box {
-            background: rgba(202, 138, 4, 0.15);
-            color: #fde047;
+            background: rgba(202, 138, 4, 0.2);
+            color: #fde047 !important;
             padding: 12px 16px;
             border-radius: 8px;
-            border: 1px solid rgba(234, 179, 8, 0.4);
+            border: 1px solid rgba(234, 179, 8, 0.5);
             font-size: 12px;
             margin-bottom: 20px;
         }
+        .disclaimer-box strong {
+            color: #fef08a !important;
+        }
 
-        /* Expander styling */
+        /* Expander styling for perfect dark mode visibility */
         .streamlit-expanderHeader {
-            background: rgba(13, 40, 24, 0.9) !important;
+            background: rgba(13, 40, 24, 0.95) !important;
             color: #ffffff !important;
             border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         div[data-testid="stExpander"] {
-            background: rgba(7, 25, 17, 0.6) !important;
-            border: 1px solid rgba(212, 175, 55, 0.15) !important;
+            background: rgba(7, 25, 17, 0.8) !important;
+            border: 1px solid rgba(212, 175, 55, 0.25) !important;
             border-radius: 8px;
+        }
+        div[data-testid="stExpander"] summary p {
+            color: #ffffff !important;
+            font-weight: 600;
         }
 
         /* Sidebar Customization */
@@ -253,12 +260,6 @@ st.markdown(
         }
         [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
             color: #d4af37 !important;
-        }
-
-        /* Dataframes & Tables */
-        dataframe, table {
-            background-color: #0d2818 !important;
-            color: #ffffff !important;
         }
 
         @media screen and (max-width: 768px) {
@@ -339,9 +340,9 @@ with head_col1:
   st.markdown(
       """
         <h1 style='margin-bottom: 0px; font-size: 24px; color: #ffffff; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
-        <p style='margin-top: 4px; font-size: 12px; color: #d1d5db; font-weight: 500; line-height: 1.3;'>
+        <p style='margin-top: 4px; font-size: 12px; color: #f3f4f6; font-weight: 500; line-height: 1.3;'>
             <strong style="color: #ffffff;">Oranon Humanitarian Special Framework (OHSF)</strong><br>
-            Total Investment Portfolio: <code style="background: rgba(212,175,55,0.2); color: #d4af37; padding: 2px 6px; border-radius: 4px;">₱1.50 Trillion</code> across <b style="color: #ffffff;">95 Strategic PAPs</b>
+            Total Investment Portfolio: <code style="background: rgba(212,175,55,0.25); color: #d4af37; padding: 2px 6px; border-radius: 4px; font-weight: bold;">₱1.50 Trillion</code> across <b style="color: #ffffff;">95 Strategic PAPs</b>
         </p>
     """,
       unsafe_allow_html=True,
@@ -351,7 +352,7 @@ with head_col2:
   st.markdown(
       f"""
     <div class="exec-box">
-        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3px;">
+        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3px;">
             🕒 {pht_time_str} (PHT)
         </div>
     """,
@@ -367,7 +368,7 @@ with head_col2:
   with p_subcol2:
     st.markdown(
         """
-        <p style="margin: 0; font-size: 9px; color: #9ca3af; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 0; font-size: 9px; color: #d1d5db; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
         <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #ffffff; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
         <p style="margin: 0; font-size: 10px; color: #d4af37; font-weight: 700;">MBA, PhD</p>
         """,
@@ -385,7 +386,7 @@ st.markdown(
 )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
     " N",
     unsafe_allow_html=True,
 )
@@ -449,7 +450,7 @@ with m4:
   )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
     " N",
     unsafe_allow_html=True,
 )
@@ -506,7 +507,7 @@ with row2_col2:
     )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
     " N",
     unsafe_allow_html=True,
 )
@@ -550,6 +551,7 @@ with c_col1:
       title_font_size=14,
       paper_bgcolor="rgba(0,0,0,0)",
       plot_bgcolor="rgba(0,0,0,0)",
+      font_color="#ffffff",
       margin=dict(t=40, b=20, l=20, r=20),
   )
   st.plotly_chart(fig_bar, use_container_width=True)
@@ -567,6 +569,7 @@ with c_col2:
       title_font_size=14,
       paper_bgcolor="rgba(0,0,0,0)",
       plot_bgcolor="rgba(0,0,0,0)",
+      font_color="#ffffff",
       margin=dict(t=40, b=20, l=20, r=20),
   )
   st.plotly_chart(fig_line, use_container_width=True)
@@ -575,7 +578,7 @@ with st.expander("🔍 View Detailed Schedule & Disbursement Table (2026-2040)")
   st.dataframe(scurve_df, use_container_width=True, hide_index=True)
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
     " N",
     unsafe_allow_html=True,
 )
@@ -605,6 +608,7 @@ with col_chart1:
         title_font_size=14,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
+        font_color="#ffffff",
         margin=dict(t=40, b=20, l=20, r=20),
         showlegend=False,
     )
@@ -630,6 +634,7 @@ with col_chart2:
         title_font_size=14,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
+        font_color="#ffffff",
         margin=dict(t=40, b=20, l=20, r=20),
         showlegend=False,
     )
@@ -638,7 +643,7 @@ with col_chart2:
     st.warning("No data available for current filters.")
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.2);'>"
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
     " N",
     unsafe_allow_html=True,
 )
@@ -676,5 +681,5 @@ st.download_button(
     label="📥 Download Filtered Master Plan Report (CSV)",
     data=csv,
     file_name="OHSF_Master_Plan_Report.csv",
-    mime="text/csv",
+    mime="text/css",
 )
