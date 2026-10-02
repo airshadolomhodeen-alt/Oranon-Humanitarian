@@ -44,7 +44,7 @@ if not st.session_state.entered:
                 max-width: 620px;
                 margin: 8vh auto 20px auto;
                 border-top: 5px solid #d4af37;
-                border: 1px solid rgba(212, 175, 55, 0.2);
+                border: 1px solid rgba(212, 175, 55, 0.3);
             }
             
             .arabic-title {
@@ -67,14 +67,14 @@ if not st.session_state.entered:
             
             .welcome-desc {
                 font-size: 13px;
-                color: #f3f4f6;
+                color: #ffffff;
                 line-height: 1.6;
                 margin-bottom: 25px;
             }
             
             .manager-tag {
                 font-size: 11px;
-                color: #d1d5db;
+                color: #d4af37;
                 font-style: italic;
                 font-weight: 500;
             }
@@ -106,7 +106,7 @@ if not st.session_state.entered:
                 <div class="arabic-title">السَّلاَمُ عَلَيْكُمْ</div>
                 <div class="english-subtitle">Assalamu Alaykum</div>
                 <p style="font-size: 14px; color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
-                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0;">
+                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.2); margin: 20px 0;">
                 <p class="welcome-desc">
                     This platform provides a comprehensive spatial and financial overview of the 
                     <strong style="color: #ffffff;">Oranon Humanitarian Special Framework (OHSF)</strong> investment portfolio (₱1.50 Trillion across 95 Strategic PAPs).
@@ -162,7 +162,7 @@ st.markdown(
             max-width: 100% !important;
         }
         
-        /* Typography overrides for full visibility */
+        /* High-Contrast Text Overrides */
         h1, h2, h3, h4, h5, h6 {
             color: #ffffff !important;
         }
@@ -179,7 +179,7 @@ st.markdown(
             margin-right: -50vw;
             margin-top: -1rem;
             margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             background-color: #071911;
         }
         .edge-banner img {
@@ -192,17 +192,17 @@ st.markdown(
         
         /* Glassmorphism Emerald Cards for Metrics */
         .stMetric { 
-            background: rgba(13, 40, 24, 0.9) !important;
+            background: rgba(13, 40, 24, 0.95) !important;
             padding: 12px 15px; 
             border-radius: 10px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
             border-top: 4px solid #d4af37;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             margin-bottom: 10px;
         }
         .stMetric label {
             color: #d4af37 !important;
-            font-weight: 600 !important;
+            font-weight: 700 !important;
         }
         .stMetric [data-testid="stMetricValue"] {
             color: #ffffff !important;
@@ -210,26 +210,26 @@ st.markdown(
         
         /* Executive Header Box / Profile Container */
         .exec-box {
-            background: rgba(13, 40, 24, 0.9);
+            background: rgba(13, 40, 24, 0.95);
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             border-left: 4px solid #d4af37;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
         }
 
         /* Disclaimer Box */
         .disclaimer-box {
-            background: rgba(202, 138, 4, 0.2);
-            color: #fde047 !important;
+            background: rgba(202, 138, 4, 0.25);
+            color: #fef08a !important;
             padding: 12px 16px;
             border-radius: 8px;
-            border: 1px solid rgba(234, 179, 8, 0.5);
+            border: 1px solid rgba(234, 179, 8, 0.6);
             font-size: 12px;
             margin-bottom: 20px;
         }
         .disclaimer-box strong {
-            color: #fef08a !important;
+            color: #ffffff !important;
         }
 
         /* Expander styling for perfect dark mode visibility */
@@ -237,11 +237,11 @@ st.markdown(
             background: rgba(13, 40, 24, 0.95) !important;
             color: #ffffff !important;
             border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
         }
         div[data-testid="stExpander"] {
-            background: rgba(7, 25, 17, 0.8) !important;
-            border: 1px solid rgba(212, 175, 55, 0.25) !important;
+            background: rgba(7, 25, 17, 0.9) !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
             border-radius: 8px;
         }
         div[data-testid="stExpander"] summary p {
@@ -252,7 +252,7 @@ st.markdown(
         /* Sidebar Customization */
         [data-testid="stSidebar"] {
             background-color: #071911 !important;
-            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            border-right: 1px solid rgba(212, 175, 55, 0.3);
         }
         [data-testid="stSidebar"] label {
             color: #ffffff !important;
@@ -340,9 +340,9 @@ with head_col1:
   st.markdown(
       """
         <h1 style='margin-bottom: 0px; font-size: 24px; color: #ffffff; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
-        <p style='margin-top: 4px; font-size: 12px; color: #f3f4f6; font-weight: 500; line-height: 1.3;'>
+        <p style='margin-top: 4px; font-size: 12px; color: #ffffff; font-weight: 500; line-height: 1.3;'>
             <strong style="color: #ffffff;">Oranon Humanitarian Special Framework (OHSF)</strong><br>
-            Total Investment Portfolio: <code style="background: rgba(212,175,55,0.25); color: #d4af37; padding: 2px 6px; border-radius: 4px; font-weight: bold;">₱1.50 Trillion</code> across <b style="color: #ffffff;">95 Strategic PAPs</b>
+            Total Investment Portfolio: <code style="background: rgba(212,175,55,0.3); color: #d4af37; padding: 2px 6px; border-radius: 4px; font-weight: bold;">₱1.50 Trillion</code> across <b style="color: #ffffff;">95 Strategic PAPs</b>
         </p>
     """,
       unsafe_allow_html=True,
@@ -352,7 +352,7 @@ with head_col2:
   st.markdown(
       f"""
     <div class="exec-box">
-        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3px;">
+        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px;">
             🕒 {pht_time_str} (PHT)
         </div>
     """,
@@ -368,7 +368,7 @@ with head_col2:
   with p_subcol2:
     st.markdown(
         """
-        <p style="margin: 0; font-size: 9px; color: #d1d5db; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 0; font-size: 9px; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
         <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #ffffff; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
         <p style="margin: 0; font-size: 10px; color: #d4af37; font-weight: 700;">MBA, PhD</p>
         """,
@@ -386,8 +386,7 @@ st.markdown(
 )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
-    " N",
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.4); margin: 25px 0;'>",
     unsafe_allow_html=True,
 )
 
@@ -450,8 +449,7 @@ with m4:
   )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
-    " N",
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.4); margin: 25px 0;'>",
     unsafe_allow_html=True,
 )
 
@@ -507,8 +505,7 @@ with row2_col2:
     )
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
-    " N",
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.4); margin: 25px 0;'>",
     unsafe_allow_html=True,
 )
 
@@ -578,8 +575,7 @@ with st.expander("🔍 View Detailed Schedule & Disbursement Table (2026-2040)")
   st.dataframe(scurve_df, use_container_width=True, hide_index=True)
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
-    " N",
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.4); margin: 25px 0;'>",
     unsafe_allow_html=True,
 )
 
@@ -643,8 +639,7 @@ with col_chart2:
     st.warning("No data available for current filters.")
 
 st.markdown(
-    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.3);'>"
-    " N",
+    "<hr style='border: none; border-top: 1px solid rgba(212,175,55,0.4); margin: 25px 0;'>",
     unsafe_allow_html=True,
 )
 
@@ -681,5 +676,5 @@ st.download_button(
     label="📥 Download Filtered Master Plan Report (CSV)",
     data=csv,
     file_name="OHSF_Master_Plan_Report.csv",
-    mime="text/css",
+    mime="text/csv",
 )
