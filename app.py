@@ -1,8 +1,8 @@
 import datetime
+from zoneinfo import ZoneInfo
 import numpy as np
 import pandas as pd
 import plotly.express as px
-import pytz
 import streamlit as st
 
 # Page Configuration
@@ -171,6 +171,29 @@ with head_col2:
         unsafe_allow_html=True,
     )
   st.markdown("</div>", unsafe_allow_html=True)
+
+# Official Conceptual Plan Disclaimer
+st.markdown(
+    """
+    <div class="disclaimer-box">
+        <strong>⚠️ DISCLAIMER:</strong> This dashboard represents a <strong>Conceptual Plan</strong> only. All spatial allocations, technical designs, and financial projections are subject to final Detailed Engineering Design (DED) and Comprehensive Feasibility Study (FS).
+    </div>
+""",
+    unsafe_allow_html=True,
+)
+
+# Professional Banner Wrapped in Container
+st.markdown('<div class="banner-container">', unsafe_allow_html=True)
+try:
+  st.image("Banner.jfif", use_container_width=True)
+except Exception:
+  st.warning(
+      "Banner image ('Banner.jfif') not found in directory. Please upload it"
+      " to GitHub."
+  )
+st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown("---")
 
 # ==========================================
 # SIDEBAR FILTERS
