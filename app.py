@@ -211,7 +211,7 @@ st.markdown(
         /* Executive Header Box / Profile Container */
         .exec-box {
             background: rgba(13, 40, 24, 0.95);
-            padding: 15px;
+            padding: 15px 20px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             border-left: 4px solid #d4af37;
@@ -352,29 +352,16 @@ with head_col2:
   st.markdown(
       f"""
     <div class="exec-box">
-        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px;">
+        <div style="font-size: 11px; font-weight: 700; color: #d4af37; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 4px;">
             🕒 {pht_time_str} (PHT)
         </div>
+        <p style="margin: 0; font-size: 9px; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
+        <p style="margin: 2px 0; font-size: 13px; font-weight: bold; color: #ffffff; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 0; font-size: 10px; color: #d4af37; font-weight: 700;">MBA, PhD</p>
+    </div>
     """,
       unsafe_allow_html=True,
   )
-
-  p_subcol1, p_subcol2 = st.columns([1, 2.4])
-  with p_subcol1:
-    try:
-      st.image("2x21_optimized_300.png", width=65)
-    except Exception:
-      st.info("Photo missing")
-  with p_subcol2:
-    st.markdown(
-        """
-        <p style="margin: 0; font-size: 9px; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
-        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #ffffff; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
-        <p style="margin: 0; font-size: 10px; color: #d4af37; font-weight: 700;">MBA, PhD</p>
-        """,
-        unsafe_allow_html=True,
-    )
-  st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown(
     """
@@ -676,5 +663,5 @@ st.download_button(
     label="📥 Download Filtered Master Plan Report (CSV)",
     data=csv,
     file_name="OHSF_Master_Plan_Report.csv",
-    mime="text/csv",
+    mime="text/css",
 )
