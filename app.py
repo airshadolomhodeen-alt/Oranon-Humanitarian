@@ -18,45 +18,102 @@ if "entered" not in st.session_state:
   st.session_state.entered = False
 
 # ==========================================
-# WELCOME SCREEN / GATE
+# WELCOME SCREEN / GATE (WITH ARABIC TYPOGRAPHY & THEME)
 # ==========================================
 if not st.session_state.entered:
   st.markdown(
       """
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+            
             header[data-testid="stHeader"] { display: none !important; }
             div[data-testid="stDecoration"] { display: none !important; }
-            .stApp { background: linear-gradient(135deg, #0e1117 0%, #1f2937 100%); }
+            
+            .stApp { 
+                background: linear-gradient(135deg, #071911 0%, #0d2818 50%, #1b4d3e 100%);
+                font-family: 'Inter', sans-serif;
+            }
+            
             .welcome-card {
-                background: #ffffff;
+                background: rgba(255, 255, 255, 0.98);
                 color: #111111;
-                padding: 40px;
-                border-radius: 16px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                padding: 45px 35px;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
                 text-align: center;
-                max-width: 600px;
-                margin: 10vh auto 20px auto;
+                max-width: 620px;
+                margin: 8vh auto 20px auto;
+                border-top: 5px solid #d4af37;
+            }
+            
+            .arabic-title {
+                font-family: 'Amiri', serif;
+                font-size: 46px;
+                color: #1b4d3e;
+                font-weight: 700;
+                margin-bottom: 0px;
+                line-height: 1.2;
+                direction: rtl;
+            }
+            
+            .english-subtitle {
+                font-size: 26px;
+                color: #2c3e50;
+                font-weight: 700;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .welcome-desc {
+                font-size: 13px;
+                color: #555658;
+                line-height: 1.6;
+                margin-bottom: 25px;
+            }
+            
+            .manager-tag {
+                font-size: 11px;
+                color: #7f8c8d;
+                font-style: italic;
+                font-weight: 500;
+            }
+            
+            /* Custom styling for the Proceed Button inside the card wrapper */
+            .stButton button {
+                background-color: #1b4d3e !important;
+                color: #ffffff !important;
+                font-weight: 600 !important;
+                border-radius: 8px !important;
+                border: none !important;
+                padding: 0.6rem 1.5rem !important;
+                box-shadow: 0 4px 12px rgba(27, 77, 62, 0.3) !important;
+                transition: all 0.3s ease !important;
+            }
+            .stButton button:hover {
+                background-color: #24634f !important;
+                box-shadow: 0 6px 16px rgba(27, 77, 62, 0.4) !important;
             }
         </style>
     """,
       unsafe_allow_html=True,
   )
 
-  col1, col2, col3 = st.columns([1, 2, 1])
+  col1, col2, col3 = st.columns([1, 2.2, 1])
   with col2:
     st.markdown(
         """
             <div class="welcome-card">
-                <h1 style="color: #1f77b4; font-size: 34px; font-weight: 800; margin-bottom: 5px;">Assalamu Alaykum</h1>
-                <p style="font-size: 16px; color: #444; font-weight: 700; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
-                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-                <p style="font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 25px;">
+                <div class="arabic-title">السَّلاَمُ عَلَيْكُمْ</div>
+                <div class="english-subtitle">Assalamu Alaykum</div>
+                <p style="font-size: 14px; color: #d4af37; font-weight: 600; margin-bottom: 15px;">Welcome to the OHSF Master Plan Dashboard</p>
+                <hr style="border: none; border-top: 1px solid #eaeaea; margin: 20px 0;">
+                <p class="welcome-desc">
                     This platform provides a comprehensive spatial and financial overview of the 
                     <strong>Oranon Humanitarian Special Framework (OHSF)</strong> investment portfolio (₱1.50 Trillion across 95 Strategic PAPs).
                 </p>
-                <p style="font-size: 11px; color: #888; font-style: italic;">
+                <div class="manager-tag">
                     Project Manager: Engr. Airsad R. Olomodin, MBA, PhD
-                </p>
+                </div>
             </div>
         """,
         unsafe_allow_html=True,
@@ -70,7 +127,7 @@ if not st.session_state.entered:
       st.session_state.entered = True
       st.rerun()
 
-  st.stop()  # Stops execution here until the user clicks proceed
+  st.stop()  # Stops execution here until user clicks proceed
 
 # ==========================================
 # MAIN DASHBOARD STYLING & LOAD
@@ -122,7 +179,7 @@ st.markdown(
             padding: 12px 15px; 
             border-radius: 8px; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.04); 
-            border-top: 4px solid #1f77b4;
+            border-top: 4px solid #1b4d3e;
             margin-bottom: 10px;
         }
         .disclaimer-box {
@@ -211,7 +268,7 @@ head_col1, head_col2 = st.columns([1.7, 1.3])
 with head_col1:
   st.markdown(
       """
-        <h1 style='margin-bottom: 0px; font-size: 24px; color: #1f77b4; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
+        <h1 style='margin-bottom: 0px; font-size: 24px; color: #1b4d3e; font-weight: 800;'>OHSF Master Plan Dashboard</h1>
         <p style='margin-top: 4px; font-size: 12px; color: #333; font-weight: 500; line-height: 1.3;'>
             <strong>Oranon Humanitarian Special Framework (OHSF)</strong><br>
             Total Investment Portfolio: <code>₱1.50 Trillion</code> across <b>95 Strategic PAPs</b>
@@ -223,7 +280,7 @@ with head_col1:
 with head_col2:
   st.markdown(
       f"""
-    <div style="background-color: #ffffff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-left: 4px solid #1f77b4;">
+    <div style="background-color: #ffffff; padding: 10px 12px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-left: 4px solid #1b4d3e;">
         <div style="font-size: 11px; font-weight: 700; color: #111; margin-bottom: 6px; border-bottom: 1px solid #eee; padding-bottom: 3px;">
             🕒 {pht_time_str} (PHT)
         </div>
@@ -241,7 +298,7 @@ with head_col2:
     st.markdown(
         """
         <p style="margin: 0; font-size: 9px; color: #555; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Project Manager</p>
-        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #1f77b4; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
+        <p style="margin: 2px 0; font-size: 12px; font-weight: bold; color: #1b4d3e; line-height: 1.1;">ENGR. AIRSAD R. OLOMODIN</p>
         <p style="margin: 0; font-size: 10px; color: #222; font-weight: 700;">MBA, PhD</p>
         """,
         unsafe_allow_html=True,
